@@ -12,11 +12,12 @@
 ![AWS](https://img.shields.io/badge/deployed-AWS%20EC2-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
 ![Grafana](https://img.shields.io/badge/monitoring-Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
 ![Live](https://img.shields.io/badge/live-biq--web.nxs.bd-22C55E?style=flat-square)
+![Kaggle](https://img.shields.io/badge/data-Kaggle-20BEFF?style=flat-square&logo=kaggle&logoColor=white)
 ![License](https://img.shields.io/badge/license-unlicensed-lightgrey?style=flat-square)
 
 Behavior-aware commerce for e-commerce. BehaviourIQ reads shopper signals and turns them into personalized prices, intent-based search and churn alerts. Built as a CloudCamp hackathon demo.
 
-**This repo** holds the platform overview (`README.md`) and the shared product catalog (`data/products.json`). Application code lives in three separate GitHub repos. We did not use a monorepo during the hackathon; each teammate forked and worked in parallel, then synced into the repos below.
+**This repo** holds the platform overview (`README.md`) and the shared product catalog in `data/`. The JSON files under `data/` are sourced from **Kaggle** e-commerce datasets, cleaned and normalized for the demo storefront and Pinecone index. Application code lives in three separate GitHub repos. We did not use a monorepo during the hackathon; each teammate forked and worked in parallel, then synced into the repos below.
 
 [![behavioriq-api](https://img.shields.io/badge/behavioriq--api-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/saminyasar004/behavioriq-api)
 [![behavioriq-ml-service](https://img.shields.io/badge/behavioriq--ml--service-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/smabdullah2002/behavioriq-ml-service)
@@ -56,9 +57,21 @@ Shopper (web) -> API (5000) -> ML (8001)
                      +-- Redis
 ```
 
-Product catalog: `data/products.json` in **this repo**. API and ML mount or read the same file at deploy time.
+Product catalog: `data/products.json` in **this repo** (Kaggle-sourced). API and ML mount or read the same file at deploy time.
 
 ---
+
+## Data (`data/`)
+
+This repo ships the shared catalog only. All JSON under `data/` comes from **Kaggle**:
+
+| File | Source | Used for |
+|------|--------|----------|
+| `data/products.json` | Kaggle e-commerce / fashion product dataset | Storefront catalog, Pinecone hybrid index, dynamic pricing base prices |
+
+The raw Kaggle exports were cleaned into a single JSON schema (`id`, `name`, `desc`, `category`, `brand`, `price`, `rating`, `image`, etc.). API and ML both read this file so search, pricing and browse stay in sync.
+
+Churn model training uses a separate Kaggle dataset inside the ML repo.
 
 ## Status
 
