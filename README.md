@@ -178,7 +178,7 @@ Setup:
 2. Add a GTM tag or server forwarder that POSTs to `/api/events/batch`
 3. BehaviourIQ rebuilds profiles and drives pricing, search and churn alerts
 
-Full contract: [PIXEL_EVENT_FORMAT.md](https://github.com/saminyasar004/behavioriq-api/blob/main/PIXEL_EVENT_FORMAT.md)
+Full contract: [PIXEL_EVENT_FORMAT.md](https://github.com/saminyasar004/behavioriq-api/blob/master/PIXEL_EVENT_FORMAT.md)
 
 ### Dynamic pricing
 
